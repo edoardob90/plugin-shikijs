@@ -1,0 +1,14 @@
+<!-- Initialize Shikijs -->
+<script src="https://cdn.jsdelivr.net/npm/shiki"></script>
+<script>
+  let highlighter;
+  shiki
+    .getHighlighter({
+      theme: "nord",
+      langs: ["js", "python"],
+    })
+    .then((h) => {
+      highlighter = h;
+    });
+</script>
+<script src="/js/shiki.js"></script>
