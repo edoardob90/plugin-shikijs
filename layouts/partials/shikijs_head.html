@@ -19,12 +19,12 @@
         const availLangs = shiki.BUNDLED_LANGUAGES.filter((lang) => {
           return lang.id === language || lang.aliases?.includes(language);
         });
-      }
 
-      if (availLangs.length > 0) {
-        await highlighter.loadLanguage(language);
-      } else {
-        console.warn(`Language ${language} is not supported by Shiki`);
+        if (availLangs.length > 0) {
+          await highlighter.loadLanguage(language);
+        } else {
+          console.warn(`Language ${language} is not supported by Shiki`);
+        }
       }
 
       const highlightedCode = highlighter.codeToHtml(code, {
