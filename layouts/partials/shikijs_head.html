@@ -1,20 +1,39 @@
 <!-- Initialize Shikijs -->
 <script src="https://cdn.jsdelivr.net/npm/shiki"></script>
+<!-- Function to highlight all code blocks -->
 <script>
-  let highlighter;
-  shiki
-    .getHighlighter({
+  async function highlightCodeBlocks() {
+    const highlighter = await shiki.getHighlighter({
       theme: "{{ $.Site.Params.shiki_theme }}",
       langs: ["js", "python", "wolfram"],
-    })
-    .then((highlighter) => {
-      document.querySelectorAll("div.shiki").forEach((block) => {
-        const code = block.textContent;
-        const language = block.dataset.language;
-        const highlightedCode = highlighter.codeToHtml(code, {
-          lang: language,
-        });
-        block.innerHTML = highlightedCode;
-      });
     });
+
+    const codeBlocks = document.querySelectorAll("div.shiki");
+
+    for (const block of codeBlocks) {
+      const code = block.textContent;
+      const language = block.dataset.language;
+
+      // Check if language is loaded and supported
+      if (!highlighter.getLoadedLanguages().includes(language)) {
+        const availLangs = shiki.BUNDLED_LANGUAGES.filter((lang) => {
+          return lang.id === language || lang.aliases?.includes(language);
+        });
+      }
+
+      if (availLangs.length > 0) {
+        await highlighter.loadLanguage(language);
+      } else {
+        console.warn(`Language ${language} is not supported by Shiki`);
+      }
+
+      const highlightedCode = highlighter.codeToHtml(code, {
+        lang: language,
+      });
+
+      block.innerHTML = highlightedCode;
+    }
+  }
+
+  highlightCodeBlocks();
 </script>
