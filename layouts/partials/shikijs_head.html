@@ -15,7 +15,7 @@
       const language = block.dataset.language;
 
       // Check if language is loaded and supported
-      if (!highlighter.getLoadedLanguages().includes(language)) {
+      if (language && !highlighter.getLoadedLanguages().includes(language)) {
         const availLangs = shiki.BUNDLED_LANGUAGES.filter((lang) => {
           return lang.id === language || lang.aliases?.includes(language);
         });
