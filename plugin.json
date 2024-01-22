@@ -3,6 +3,6 @@
     "title": "Shikijs for Micro.blog",
     "description": "Use Shikijs syntax highlighting in your Micro.blog theme.",
     "includes": [
-      "shiki_head.html"
+      "shikijs_head.html"
     ]
   }
