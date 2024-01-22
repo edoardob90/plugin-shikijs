@@ -8,9 +8,9 @@
       langs: ["js", "python", "wolfram"],
     })
     .then((highlighter) => {
-      document.querySelectorAll('div[type="shiki"]').forEach((block) => {
+      document.querySelectorAll("div.shiki").forEach((block) => {
         const code = block.textContent;
-        const language = block.className.replace("language-", "");
+        const language = block.dataset.language;
         const highlightedCode = highlighter.codeToHtml(code, {
           lang: language,
         });
