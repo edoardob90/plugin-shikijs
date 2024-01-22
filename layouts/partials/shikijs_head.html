@@ -4,7 +4,7 @@
   let highlighter;
   shiki
     .getHighlighter({
-      theme: "nord",
+      theme: "{{ $.Site.Params.shiki_theme }}}",
       langs: ["js", "python", "wolfram"],
     })
     .then((highlighter) => {

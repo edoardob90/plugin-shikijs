@@ -2,6 +2,13 @@
     "version": "0.1.0",
     "title": "Shikijs for Micro.blog",
     "description": "Use Shikijs syntax highlighting in your Micro.blog theme.",
+    "fields": [
+      {
+        "field": "params.shiki_theme",
+        "label": "Shikijs Theme",
+        "placeholder": "nord"
+      }
+    ],
     "includes": [
       "shikijs_head.html"
     ]
