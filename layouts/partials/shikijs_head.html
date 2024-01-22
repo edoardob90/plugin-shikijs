@@ -2,7 +2,7 @@
 <script src="https://cdn.jsdelivr.net/npm/shiki"></script>
 <!-- Function to highlight all code blocks -->
 <script>
-  async function highlightCodeBlocks() {
+  (async () => {
     const highlighter = await shiki.getHighlighter({
       theme: "{{ $.Site.Params.shiki_theme }}",
       langs: ["js", "python", "wolfram"],
@@ -33,7 +33,5 @@
 
       block.innerHTML = highlightedCode;
     }
-  }
-
-  highlightCodeBlocks();
+  })();
 </script>
