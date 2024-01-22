@@ -5,10 +5,16 @@
   shiki
     .getHighlighter({
       theme: "nord",
-      langs: ["js", "python"],
+      langs: ["js", "python", "wolfram"],
     })
-    .then((h) => {
-      highlighter = h;
+    .then((highlighter) => {
+      document.querySelectorAll('div[type="shiki"]').forEach((block) => {
+        const code = block.textContent;
+        const language = block.className.replace("language-", "");
+        const highlightedCode = highlighter.codeToHtml(code, {
+          lang: language,
+        });
+        block.innerHTML = highlightedCode;
+      });
     });
 </script>
-<script src="/js/shiki_highlight.js"></script>
